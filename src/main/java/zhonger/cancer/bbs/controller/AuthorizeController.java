@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import zhonger.cancer.bbs.dto.AccessTokenDTO;
 import zhonger.cancer.bbs.dto.GithubUser;
+import zhonger.cancer.bbs.mapper.UserMapper;
+import zhonger.cancer.bbs.model.User;
 import zhonger.cancer.bbs.provider.GithubProvider;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 @Controller
 public class AuthorizeController {
@@ -23,7 +26,8 @@ public class AuthorizeController {
     private String clientSecret;
     @Value("${github.client.redirect_uri}")
     private String redirectUri;
-
+    @Autowired
+    private UserMapper userMapper;
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code")String code, @RequestParam(name = "state")String state, HttpServletRequest request){
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
@@ -33,9 +37,17 @@ public class AuthorizeController {
         accessTokenDTO.setRedirect_uri(redirectUri);
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        GithubUser user = githubProvider.getUser(accessToken);
-        if (user != null){//登陆成功
-            request.getSession().setAttribute("user",user);
+        GithubUser githubUser = githubProvider.getUser(accessToken);
+        if (githubUser != null){//登陆成功
+            User user = new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setGmtCreate(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtCreate());
+            System.out.println(user.getGmtModified());
+            userMapper.insert(user);
+            request.getSession().setAttribute("user",githubUser);
             return "redirect:/";
         }
         else{//登陆失败
