@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/bbs.css">
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
@@ -30,6 +31,9 @@
             <button type="submit" class="btn btn-default">搜索</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
+            <li th:if="${session.user != null}">
+                <a href="/publish">发布</a>
+            </li>
             <li class="dropdown" th:if="${session.user != null}">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -45,5 +49,32 @@
     </div>
 </div>
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2>
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现
+            </h2>
+            <hr>
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a href="#">
+                        <img class="media-object" src="https://avatars.githubusercontent.com/u/76942722?s=60&v=4">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">好看得异世界穿越番推荐</h4>
+                    给仆来电好看的异世界穿越番<br>
+                    <span class="text-desc">
+                        2个回复 · 31次浏览 · 1小时前
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>热门话题</h3>
+        </div>
+    </div>
+</div>
 </body>
 </html>

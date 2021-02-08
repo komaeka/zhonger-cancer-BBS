@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">中二癌论坛</a>
+            <a class="navbar-brand" href="/">中二癌论坛</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,20 +56,28 @@
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起
             </h2>
             <hr>
-            <form action="">
+            <form action="/publish" method="post">
                 <div class="form-group">
                     <label for="title">帖子标题</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="帖子标题...">
+                    <input type="text" class="form-control"  th:value="${title}" id="title" name="title" placeholder="帖子标题...">
                 </div>
                 <div class="form-group">
-                    <label for="title">发帖内容</label>
-                    <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+                    <label for="description">发帖内容</label>
+                    <textarea name="description" id="description" th:text="${description}" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="title">添加标签:</label>
-                    <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签,以逗号分隔">
+                    <label for="tag">添加标签:</label>
+                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="输入标签,以逗号分隔">
                 </div>
-                <button type="submit" class="btn btn-success btn-publish">发布</button>
+                <div class="container-fluid main">
+                    <div class="row">
+                        <div class="alert alert-danger col-lg-3 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
+                             th:if="${error != null}"></div>
+                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn btn-success btn-publish">发布</button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">

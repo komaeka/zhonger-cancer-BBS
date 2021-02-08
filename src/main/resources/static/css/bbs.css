@@ -5,7 +5,12 @@ body{
     margin:30px;
     background-color: white;
 }
-.btn-publish{
+.btn-publish {
     float: right;
     margin-bottom: 15px;
+}
+.text-desc {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
 }

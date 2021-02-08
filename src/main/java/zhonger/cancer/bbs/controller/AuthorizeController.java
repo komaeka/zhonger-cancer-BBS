@@ -44,7 +44,7 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(accessToken);
-        if (githubUser != null){//登陆成功
+        if (githubUser != null && githubUser.getId() != null){//登陆成功
             User user = new User();
             String token = UUID.randomUUID().toString();
             user.setToken(token);
@@ -52,6 +52,7 @@ public class AuthorizeController {
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(githubUser.getAvatar_url());
 //            System.out.println(user.getGmtModified());
             userMapper.insert(user);
             response.addCookie(new Cookie("token",token));
