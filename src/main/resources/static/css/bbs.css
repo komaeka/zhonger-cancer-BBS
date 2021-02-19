@@ -14,3 +14,6 @@ body{
     font-weight: normal;
     color: #999;
 }
+.media-object {
+    height: 50px;
+}
