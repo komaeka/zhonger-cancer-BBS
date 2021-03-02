@@ -24,7 +24,7 @@ public class UserService {
             dbUser.setAvatarUrl(user.getAvatarUrl());
             dbUser.setName(user.getName());
             dbUser.setToken(user.getToken());
-            userMapper.update(user);
+            userMapper.update(dbUser);
         }
     }
 }

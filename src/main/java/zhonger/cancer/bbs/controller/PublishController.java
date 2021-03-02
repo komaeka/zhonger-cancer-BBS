@@ -42,9 +42,9 @@ public class PublishController {
             model.addAttribute("error","标签不能为空");
             return "publish";
         }
-        User user = (User) request.getAttribute("user");
-        if (user == null){
-            model.addAttribute("error","用户未登录");
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            model.addAttribute("error", "用户未登录");
             return "publish";
         }
         Question question = new Question();
