@@ -10,6 +10,7 @@ import zhonger.cancer.bbs.dto.GithubUser;
 import zhonger.cancer.bbs.mapper.UserMapper;
 import zhonger.cancer.bbs.model.User;
 import zhonger.cancer.bbs.provider.GithubProvider;
+import zhonger.cancer.bbs.service.UserService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +30,7 @@ public class AuthorizeController {
     @Value("${github.client.redirect_uri}")
     private String redirectUri;
     @Autowired
-    private UserMapper userMapper;
-
+    private UserService userService;
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code")String code,
                            @RequestParam(name = "state")String state,
@@ -50,11 +50,8 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
-            user.setGmtCreate(System.currentTimeMillis());
-            user.setGmtModified(user.getGmtCreate());
             user.setAvatarUrl(githubUser.getAvatar_url());
-//            System.out.println(user.getGmtModified());
-            userMapper.insert(user);
+            userService.createOrUpdate(user);
             response.addCookie(new Cookie("token",token));
             return "redirect:/";
         }
