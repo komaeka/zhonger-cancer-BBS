@@ -3,11 +3,11 @@
 <head>
     <title>发布 - 中二癌论坛</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/bbs.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/bbs.css">
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -19,6 +19,7 @@
             </h2>
             <hr>
             <form action="/publish" method="post">
+                <input type="hidden" name="id"  th:value="${id}">
                 <div class="form-group">
                     <label for="title">帖子标题</label>
                     <input type="text" class="form-control"  th:value="${title}" id="title" name="title" placeholder="帖子标题...">
