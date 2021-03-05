@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import zhonger.cancer.bbs.mapper.QuestionMapper;
+import zhonger.cancer.bbs.dto.QuestionDTO;
 import zhonger.cancer.bbs.model.Question;
 import zhonger.cancer.bbs.model.User;
 import zhonger.cancer.bbs.service.QuestionService;
@@ -17,12 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class PublishController {
     @Autowired
-    private QuestionMapper  questionMapper;
-    @Autowired
     private QuestionService questionService;
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id")Integer id,Model model){
-        Question question = questionService.getById(id);
+        QuestionDTO question = questionService.getById(id);
         model.addAttribute("title",question.getTitle());
         model.addAttribute("description",question.getDescription());
         model.addAttribute("tag",question.getTag());
