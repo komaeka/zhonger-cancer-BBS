@@ -57,7 +57,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public PaginationDTO list(Integer userId, Integer page, Integer size) {
+    public PaginationDTO list(Long userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
         QuestionExample questionExample =new QuestionExample();
@@ -91,7 +91,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if (question==null){
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -106,9 +106,12 @@ public class QuestionService {
     public void createOrUpdate(Question question) {
         if (question.getId()==null){
             //创建
-            questionMapper.insert(question);
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());
+            question.setViewCount(0);
+            question.setLikeCount(0);
+            question.setCommentCount(0);
+            questionMapper.insert(question);
         }else {
             //更新
             Question updateQuestion = new Question();
@@ -118,14 +121,14 @@ public class QuestionService {
             updateQuestion.setDescription(question.getDescription());
             QuestionExample example =new QuestionExample();
             example.createCriteria().andIdEqualTo(question.getId());
-            int updated =   questionMapper.updateByExampleSelective(updateQuestion,example);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion,example);
             if (updated !=1){
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
     }
 
-    public void inView(Integer id) {
+    public void inView(Long id) {
         Question question = new Question();
         question.setId(id);
         question.setViewCount(1);
