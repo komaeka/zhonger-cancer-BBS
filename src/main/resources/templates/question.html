@@ -32,7 +32,7 @@
                 </a>
             </div>
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
                 <div class="media">
                     <div class="media-left">
                         <a href="#">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <input type="hidden" id="question_id" th:value="${question.id}">
-                <textarea class="form-control comment" rows="6"></textarea>
+                <textarea class="form-control comment" rows="6" id="comment_content"></textarea>
                 <button type="button" class="btn btn-success btn-comment" onclick="post()">回复</button>
             </div>
         </div>
