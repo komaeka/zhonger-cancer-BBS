@@ -1,19 +1,20 @@
 package zhonger.cancer.bbs.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import zhonger.cancer.bbs.dto.CommentCreateDTO;
+import zhonger.cancer.bbs.dto.CommentDTO;
 import zhonger.cancer.bbs.dto.ResultDTO;
+import zhonger.cancer.bbs.enums.CommentTypeEnum;
 import zhonger.cancer.bbs.exception.CustomizeErrorCode;
 import zhonger.cancer.bbs.model.Comment;
 import zhonger.cancer.bbs.model.User;
 import zhonger.cancer.bbs.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class CommentController {
@@ -27,6 +28,9 @@ public class CommentController {
         if (user==null){
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
+        if (commentCreateDTO==null || StringUtils.isBlank(commentCreateDTO.getContent())){
+            return ResultDTO.errorOf(CustomizeErrorCode.COMMENT_IS_EMPTY);
+        }
         Comment comment = new Comment();
         comment.setParentId(commentCreateDTO.getParentId());
         comment.setContent(commentCreateDTO.getContent());
@@ -37,6 +41,12 @@ public class CommentController {
         comment.setLikeCount(0L);
         commentService.insert(comment);
         return ResultDTO.okOf();
+    }
+    @ResponseBody
+    @RequestMapping(value = "/comment/{id}",method = RequestMethod.GET)
+    public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id")Long id){
+        List<CommentDTO> commentDTOS = commentService.listByQuestionId(id, CommentTypeEnum.COMMENT);
+        return ResultDTO.okOf(commentDTOS);
     }
 }
 
