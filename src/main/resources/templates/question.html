@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/bbs.css">
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+    <script src="http://cdn.staticfile.org/moment.js/2.24.0/moment.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/bbs.js" type="application/javascript"></script>
 </head>
@@ -27,7 +28,16 @@
                     阅读数：<span th:text="${question.viewCount}"></span>
                 </span>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!--                内容-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}"></div>
+                <!--                标签-->
+                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <span class="label label-info" th:each="tag:${question.tag.split(',')}">
+                        <span class="label label-info" th:text="${tag}"></span>
+                    </span>
+                </div>
+<!--                编辑-->
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <a th:href="@{'/publish/'+${question.id}}" class="bbs-menu"
                    th:if="${session.user != null && session.user.id == question.creator}">
@@ -54,36 +64,20 @@
                             <div th:text="${comment.content}"></div>
                             <div class="menu">
                                 <span class="glyphicon glyphicon-thumbs-up icon"></span>
-                                <span class="glyphicon glyphicon-comment icon" th:data-id="${comment.id}" onclick="collapseComments(this)"></span>
+                                <span  th:data-id="${comment.id}" onclick="collapseComments(this)" class="comment-icon">
+                                     <span class="glyphicon glyphicon-comment"></span>
+                                    <span  th:text="${comment.commentCount}"></span>
+                                </span>
                                 <span class="pull-right"
                                       th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd')}"></span>
                             </div>
 <!--                            二级评论-->
-<!--                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comments" th:id="${'comment-'+comment.id}">-->
-<!--                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="comment:${comments}">-->
-<!--                                    <div class="media">-->
-<!--                                        <div class="media-left">-->
-<!--                                            <a href="#">-->
-<!--                                                <img class="media-object img-rounded" th:src="${question.user.avatarUrl}">-->
-<!--                                            </a>-->
-<!--                                        </div>-->
-<!--                                        <div class="media-body">-->
-<!--                                            <h5 class="media-heading">-->
-<!--                                                <span th:text="${question.user.name}"></span>-->
-<!--                                            </h5>-->
-<!--                                            <div th:text="${comment.content}"></div>-->
-<!--                                            <div class="menu">-->
-<!--                                                <span class="pull-right"-->
-<!--                                                      th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd')}"></span>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
-<!--                                    <input type="text" class="form-control" placeholder="评论一下..." th:id="${'input-'+comment.id}">-->
-<!--                                    <button type="button" class="btn btn-success pull-right" onclick="comment(this)" th:data-id="${comment.id}">评论</button>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comments" th:id="${'comment-'+comment.id}">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <input type="text" class="form-control" placeholder="评论一下..." th:id="${'input-'+comment.id}">
+                                    <button type="button" class="btn btn-success pull-right" onclick="comment(this)" th:data-id="${comment.id}">评论</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
