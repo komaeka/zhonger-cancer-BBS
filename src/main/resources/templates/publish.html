@@ -22,7 +22,7 @@
                 <input type="hidden" name="id"  th:value="${id}">
                 <div class="form-group">
                     <label for="title">帖子标题</label>
-                    <input type="text" class="form-control"  th:value="${title}" id="title" name="title" placeholder="帖子标题...">
+                    <input type="text" class="form-control"  th:value="${title}" id="title" name="title" placeholder="帖子标题..." autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="description">发帖内容</label>
@@ -30,12 +30,25 @@
                 </div>
                 <div class="form-group">
                     <label for="tag">添加标签:</label>
-                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="输入标签,以逗号分隔">
+                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="输入标签,以逗号分隔" autocomplete="off">
+                    <div>
+                        <span class="glyphicon glyphicon-tag">galgame</span>
+                        <span class="glyphicon glyphicon-tag">热血</span>
+                        <span class="glyphicon glyphicon-tag">萌系</span>
+                        <span class="glyphicon glyphicon-tag">催泪</span>
+                        <span class="glyphicon glyphicon-tag">穿越</span>
+                        <span class="glyphicon glyphicon-tag">校园</span>
+                        <span class="glyphicon glyphicon-tag">搞笑</span>
+                        <span class="glyphicon glyphicon-tag">恋爱</span>
+                        <span class="glyphicon glyphicon-tag">战斗</span>
+                        <span class="glyphicon glyphicon-tag">魔法</span>
+                    </div>
                 </div>
                 <div class="container-fluid main">
                     <div class="row">
-                        <div class="alert alert-danger col-lg-3 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
-                             th:if="${error != null}"></div>
+                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                            <div class="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${error}" th:if="${error != null}"></div>
+                        </div>
                         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                             <button type="submit" class="btn btn-success btn-publish">发布</button>
                         </div>
