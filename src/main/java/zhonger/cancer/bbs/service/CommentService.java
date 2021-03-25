@@ -61,7 +61,7 @@ public class CommentService {
         }
     }
 
-    public List<CommentDTO> listByQuestionId(Long id, CommentTypeEnum type) {
+    public List<CommentDTO> listByTargetId(Long id, CommentTypeEnum type) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria().andParentIdEqualTo(id).andTypeEqualTo(type.getType());
         commentExample.setOrderByClause("gmt_create desc");

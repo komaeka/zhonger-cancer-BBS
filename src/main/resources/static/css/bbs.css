@@ -169,3 +169,11 @@ body {
 .red {
     color: red !important;
 }
+
+/*自定义*/
+
+/*选中标签*/
+.select-tag:hover{
+    color: #2e6da4;
+    cursor: pointer;
+}

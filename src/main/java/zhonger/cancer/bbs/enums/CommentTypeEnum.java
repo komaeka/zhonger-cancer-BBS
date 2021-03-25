@@ -1,7 +1,5 @@
 package zhonger.cancer.bbs.enums;
 
-import zhonger.cancer.bbs.model.Comment;
-
 public enum CommentTypeEnum {
     QUESTION(1),
     COMMENT(2)

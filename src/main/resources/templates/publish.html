@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/bbs.css">
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/bbs.js" type="application/javascript"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -29,19 +30,19 @@
                     <textarea name="description" id="description" th:text="${description}" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="tag">添加标签:</label>
-                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="输入标签,以逗号分隔" autocomplete="off">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="请选择下列标签" autocomplete="off">
                     <div>
-                        <span class="glyphicon glyphicon-tag">galgame</span>
-                        <span class="glyphicon glyphicon-tag">热血</span>
-                        <span class="glyphicon glyphicon-tag">萌系</span>
-                        <span class="glyphicon glyphicon-tag">催泪</span>
-                        <span class="glyphicon glyphicon-tag">穿越</span>
-                        <span class="glyphicon glyphicon-tag">校园</span>
-                        <span class="glyphicon glyphicon-tag">搞笑</span>
-                        <span class="glyphicon glyphicon-tag">恋爱</span>
-                        <span class="glyphicon glyphicon-tag">战斗</span>
-                        <span class="glyphicon glyphicon-tag">魔法</span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('galgame')">galgame</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('热血')">热血</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('萌系')">萌系</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('催泪')">催泪</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('穿越')">穿越</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('校园')">校园</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('搞笑')">搞笑</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('恋爱')">恋爱</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('战斗')">战斗</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('魔法')">魔法</span></span>
                     </div>
                 </div>
                 <div class="container-fluid main">
@@ -60,7 +61,7 @@
             <h3>帖子发起指南</h3>
             • 帖子标题: 请用精简的语言描述您发布的帖子，不超过25字 <br>
             • 帖子内容: 详细补充您的帖子内容<br>
-            • 选择标签: 选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字<br>
+            • 选择标签: 选择一个或者多个合适的标签<br>
         </div>
     </div>
 </div>

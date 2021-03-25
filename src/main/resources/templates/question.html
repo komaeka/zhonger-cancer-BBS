@@ -25,7 +25,11 @@
                 <span class="text-desc">
                     作者：<span th:text="${question.user.name}"></span> |
                     发布时间：<span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span> |
-                    阅读数：<span th:text="${question.viewCount}"></span>
+                    阅读数：<span th:text="${question.viewCount}"></span>&nbsp;
+                    <a th:href="@{'/publish/'+${question.id}}" class="bbs-menu"
+                       th:if="${session.user != null && session.user.id == question.creator}">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑
+                    </a>
                 </span>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <!--                内容-->
@@ -37,14 +41,6 @@
                         <span class="glyphicon glyphicon-tags"></span>
                         <span class="label label-info" th:text="${tag}"></span>
                     </span>
-                </div>
-<!--                编辑-->
-                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <a th:href="@{'/publish/'+${question.id}}" class="bbs-menu"
-                       th:if="${session.user != null && session.user.id == question.creator}">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑
-                    </a>
                 </div>
             </div>
             <!--            回复-->

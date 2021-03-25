@@ -62,7 +62,7 @@ function collapseComments(e){
             e.classList.add("active");
         }else {
             $.getJSON("/comment/" + id, function (data) {
-                $.each(data.data.reverse(), function (index, comment) {
+                $.each(data.data, function (index, comment) {
                     var mediaLeftElement = $("<div/>", {
                         "class": "media-left"
                     }).append($("<img/>", {
@@ -100,6 +100,16 @@ function collapseComments(e){
                 e.setAttribute("data-collapse", "in");
                 e.classList.add("active");
             });
+        }
+    }
+}
+function selectTag(value){
+    var previous = $("#tag").val();
+    if (previous.indexOf(value)==-1){
+        if (previous){
+            $("#tag").val(previous+','+value);
+        }else{
+            $("#tag").val(value);
         }
     }
 }
