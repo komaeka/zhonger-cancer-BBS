@@ -6,16 +6,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import zhonger.cancer.bbs.dto.NotificationDTO;
 import zhonger.cancer.bbs.dto.PaginationDTO;
+import zhonger.cancer.bbs.enums.NotificationTypeEnum;
 import zhonger.cancer.bbs.model.User;
+import zhonger.cancer.bbs.service.NotificationService;
 import zhonger.cancer.bbs.service.QuestionService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class ProfileController {
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private NotificationService notificationService;
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action")String action,
                           Model model,
@@ -29,13 +35,15 @@ public class ProfileController {
         if ("questions".contains(action)){
             model.addAttribute("section","questions");
             model.addAttribute("sectionName","我的发帖");
+            PaginationDTO paginationDTO = questionService.list(user.getId(), page, size);
+            model.addAttribute("pagination",paginationDTO);
         }
         else if ("replies".contains(action)){
+            PaginationDTO paginationDTO = notificationService.list(user.getId(),page,size);
             model.addAttribute("section","replies");
+            model.addAttribute("pagination",paginationDTO);
             model.addAttribute("sectionName","最新回复");
         }
-        PaginationDTO paginationDTO = questionService.list(user.getId(), page, size);
-        model.addAttribute("pagination",paginationDTO);
         return "profile";
     }
 }
