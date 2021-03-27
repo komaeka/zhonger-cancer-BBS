@@ -1,7 +1,5 @@
 package zhonger.cancer.bbs.exception;
 
-import java.lang.reflect.Type;
-
 public enum CustomizeErrorCode implements ICustomizeErrorCode{
     QUESTION_NOT_FOUND(2001,"你找的帖子不在了，要不换个试试？"),
     TARGET_PARAM_NOT_FOUND(2002,"未选中任何贴子或评论进行回复"),
@@ -9,7 +7,9 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode{
     SYS_ERROR(2004,"服务冒烟了，要不然你稍后再试试！！！"),
     Type_ERROR(2005,"评论类型错误或不存在"),
     COMMENT_NOT_FOUND(2006,"回复的评论不存在，要不换个试试？"),
-    COMMENT_IS_EMPTY(2007,"输入内容不能为空！")
+    COMMENT_IS_EMPTY(2007,"输入内容不能为空！"),
+    READ_NOTIFICATION_FAIL(2008,"无法读取别人的信息"),
+    NOTIFICATION_NOT_FOUND(2009,"消息不翼而飞了"),
     ;
     @Override
     public String getMessage(){
