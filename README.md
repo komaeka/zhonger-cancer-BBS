@@ -1,7 +1,7 @@
 ## BBS
 
 ## 功能列表  
-开源论坛、问答系统，现有功能提问、回复、通知、最新、最热、消除零回复功能。功能持续更新中…… 
+开源论坛、问答系统，现有功能提问、回复、通知
 
 ## 技术栈
 |  技术   |  链接   |
@@ -9,22 +9,12 @@
 |  Spring Boot   |  http://projects.spring.io/spring-boot/#quick-start   |
 |   MyBatis  |  https://mybatis.org/mybatis-3/zh/index.html   |
 |   MyBatis Generator  |  http://mybatis.org/generator/   |
-|   H2  |   http://www.h2database.com/html/main.html  |
 |   Flyway  |   https://flywaydb.org/getstarted/firststeps/maven  |
 |Lombok| https://www.projectlombok.org |
 |Bootstrap|https://v3.bootcss.com/getting-started/|
 |Github OAuth|https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/|
 |UFile|https://github.com/ucloud/ufile-sdk-java|
 |Bootstrap|https://v3.bootcss.com/getting-started/|
-
-## 在线视频
-|  标题   |  链接   |
-| --- | --- |
-|  【Spring Boot 实战】论坛项目【第一季】   |  https://www.bilibili.com/video/BV1r4411r7au  |
-|  【Spring Boot 实战】热门话题【第二季】 |  https://www.bilibili.com/video/BV1Z4411f7RK  |
-|  【Spring Boot 实战】接入广告流量变现【第三季】  | https://www.bilibili.com/video/BV1L4411y7J9  |
-|  【Spring Boot 实战】Vue 零基础入门【第四季】  |   https://www.bilibili.com/video/BV1gE411R7YA |
-|  【Spring Boot 实战】快速搭建免费 HTTPS 服务  |   https://www.bilibili.com/video/BV1oJ411K7VT  |
 
 ## 本地运行手册
 1. 安装必备工具  
@@ -90,11 +80,3 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 [One Tab](https://chrome.google.com/webstore/detail/chphlpgkkbolifaimnlloiipkdnihall)    
 [Live Reload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei/related)  
 [Postman](https://chrome.google.com/webstore/detail/coohjcphdfgbiolnekdpbcijmhambjff)
-
-## 更新日志
-- 2019-7-30 修复 session 过期时间很短问题   
-- 2019-8-2 修复因为*和+号产生的搜索异常问题  
-- 2019-8-18 添加首页按照最新、最热、零回复排序  
-- 2019-8-18 修复搜索输入 ? 号出现异常问题
-- 2019-8-22 修复图片大小限制和提问内容为空问题
-- 2019-9-1 添加动态导航栏
