@@ -22,50 +22,70 @@
             </h2>
             <hr>
             <form action="/publish" method="post">
-                <input type="hidden" name="id"  th:value="${id}">
+                <input type="hidden" name="id" th:value="${id}">
                 <div class="form-group">
                     <label for="title">帖子标题</label>
-                    <input type="text" class="form-control"  th:value="${title}" id="title" name="title" placeholder="帖子标题..." autocomplete="off">
+                    <input type="text" class="form-control" th:value="${title}" id="title" name="title"
+                           placeholder="帖子标题..." autocomplete="off">
                 </div>
                 <div class="form-group" id="question-editor">
                     <label for="description">发帖内容</label>
-                    <textarea name="description" id="description" th:text="${description}" class="form-control" cols="30" rows="10" style="display: none"></textarea>
+                    <textarea name="description" id="description" th:text="${description}" class="form-control"
+                              cols="30" rows="10" style="display: none"></textarea>
                 </div>
                 <script type="text/javascript">
-                    $(function() {
+                    $(function () {
                         var editor = editormd("question-editor", {
-                            width  : "100%",
-                            height : 350,
-                            path    : "/js/lib/",
-                            delay   :0,
-                            watch   :false,
-                            placeholder:"请输入帖子内容"
+                            width: "100%",
+                            height: 350,
+                            path: "/js/lib/",
+                            delay: 0,
+                            watch: false,
+                            placeholder: "请输入帖子内容",
+                            imageUpload: true,
+                            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                            imageUploadURL: "/file/upload",
                         });
                     });
                 </script>
                 <div class="form-group">
                     <label for="tag">添加标签</label>
-                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="请选择下列标签" autocomplete="off">
+                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="请选择下列标签"
+                           autocomplete="off">
                     <div>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('galgame')">galgame</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('动漫')">动漫</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('奇幻')">奇幻</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('架空')">架空</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('热血')">热血</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('萌系')">萌系</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('催泪')">催泪</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('穿越')">穿越</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('校园')">校园</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('搞笑')">搞笑</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('恋爱')">恋爱</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('战斗')">战斗</span></span>
-                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag" onclick="selectTag('魔法')">魔法</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('galgame')">galgame</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('动漫')">动漫</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('奇幻')">奇幻</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('架空')">架空</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('热血')">热血</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('萌系')">萌系</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('催泪')">催泪</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('穿越')">穿越</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('校园')">校园</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('搞笑')">搞笑</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('恋爱')">恋爱</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('战斗')">战斗</span></span>
+                        <span class="label label-info select-tag"><span class="glyphicon glyphicon-tag"
+                                                                        onclick="selectTag('魔法')">魔法</span></span>
                     </div>
                 </div>
                 <div class="container-fluid main">
                     <div class="row">
                         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                            <div class="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${error}" th:if="${error != null}"></div>
+                            <div class="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
+                                 th:if="${error != null}"></div>
                         </div>
                         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                             <button type="submit" class="btn btn-success btn-publish">发布</button>
