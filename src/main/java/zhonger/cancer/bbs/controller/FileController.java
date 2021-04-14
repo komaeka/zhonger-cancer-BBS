@@ -16,7 +16,6 @@ public class FileController {
     @ResponseBody
     public FileDTO upload(@RequestParam(value = "editormd-image-file", required = false)MultipartFile image) {
         String imageName = image.getOriginalFilename();
-        System.out.println(image);
         String imagePath = "C:/code/bbs/src/main/resources/static/images/";
         File destination = new File(imagePath+imageName);
         try {
