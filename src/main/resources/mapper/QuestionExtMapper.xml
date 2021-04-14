@@ -41,7 +41,7 @@
   <select id="countBySearch" parameterType="zhonger.cancer.bbs.dto.QuestionQueryDTO" resultType="java.lang.Integer">
     select count(*) from QUESTION
     <where>
-      <if test="search != null">
+      <if test="search != null and search!=''">
            and title regexp #{search}
       </if>
     </where>
@@ -49,7 +49,7 @@
   <select id="selectBySearch" parameterType="zhonger.cancer.bbs.dto.QuestionQueryDTO" resultMap="BaseResultMap">
     select * from question
     <where>
-      <if test="search != null">
+      <if test="search != null and search!=''">
         and title regexp #{search}
       </if>
     </where>

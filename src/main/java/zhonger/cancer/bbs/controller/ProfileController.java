@@ -43,4 +43,9 @@ public class ProfileController {
         }
         return "profile";
     }
+    @GetMapping("/profile/delete/{id}")
+    public String edit(@PathVariable(name = "id")Long id){
+        questionService.deleteQuestion(id);
+        return "redirect:/profile/question";
+    }
 }

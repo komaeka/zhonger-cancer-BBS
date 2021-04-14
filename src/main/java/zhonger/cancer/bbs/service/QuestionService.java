@@ -172,4 +172,8 @@ public class QuestionService {
         }).collect(Collectors.toList());
         return questionDTOS;
     }
+    public Integer deleteQuestion(Long id){
+        Integer result = questionMapper.deleteByPrimaryKey(id);
+        return result;
+    }
 }

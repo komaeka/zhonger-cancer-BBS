@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import zhonger.cancer.bbs.dto.PaginationDTO;
 import zhonger.cancer.bbs.service.QuestionService;
@@ -19,6 +20,12 @@ public class IndexController {
                         @RequestParam(name = "search",required = false)String search) {
         PaginationDTO pagination = questionService.list(search,page,size);
         model.addAttribute("pagination",pagination);
+        model.addAttribute("search",search);
         return "index";
+    }
+    @GetMapping("/index/{id}")
+    public String edit(@PathVariable(name = "id")Long id){
+        questionService.deleteQuestion(id);
+        return "redirect:/";
     }
 }
