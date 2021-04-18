@@ -36,33 +36,37 @@ public class IndexController {
 //        个性化推荐模块
         User user = (User) request.getSession().getAttribute("user");
         PythonInterpreter interpreter = new PythonInterpreter();
-//        if (user!=null){
-//            System.out.println("有人");
-//        }else {
-//            System.out.println("无人");
-//        }
-//        interpreter.execfile("C:\\code\\recommendation\\test.py");
-//        PyFunction test1 = interpreter.get("plus_test", PyFunction.class);
-//        test1.__call__(new PyInteger(5),new PyInteger(8));
-
-
-
-
-
-        interpreter.execfile("C:\\code\\recommendation\\recommendation.py");
-        PyFunction test2 = interpreter.get("cosine_similarity", PyFunction.class);
-        List<Integer> list1 = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
-        list1.add(1);
-        list1.add(2);
-        list2.add(10);
-        list2.add(20);
-        test2.__call__(new PyArray((PyArray) list1),new PyArray((PyArray) list2));
+        if (user!=null){
+            System.out.println("有人");
+        }else {
+            System.out.println("无人");
+        }
         return "index";
     }
     @GetMapping("/index/{id}")
     public String edit(@PathVariable(name = "id")Long id){
         questionService.deleteQuestion(id);
         return "redirect:/";
+    }
+    public static double cosine_similarity(List<Integer> list1,List<Integer> list2) {
+        double vector1All =0.00;//向量1分量平方和
+        double vector1Modulo = 0.00;//向量1的模
+        double vector2All = 0.00;//向量1分量平方和
+        double vector2Modulo = 0.00;//向量2的模
+        double vectorProduct = 0.00; //向量积
+        double similarity = 0.00;
+        //遍历数组
+        for(int i = 0;i < list1.size(); i ++){
+            //计算向量积
+            vectorProduct += list1.get(i)*list2.get(i);
+            //计算平方和
+            vector1All += Math.pow(list1.get(i),2);
+            vector2All += Math.pow(list2.get(i),2);
+        }
+        vector1Modulo = Math.sqrt(vector1All);
+        vector2Modulo = Math.sqrt(vector2All);
+        similarity = vectorProduct / (vector1Modulo*vector2Modulo);
+//        System.out.println(similarity);
+        return similarity;
     }
 }
