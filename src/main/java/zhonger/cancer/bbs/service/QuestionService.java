@@ -176,4 +176,10 @@ public class QuestionService {
         Integer result = questionMapper.deleteByPrimaryKey(id);
         return result;
     }
+
+    public String selectCharacteristicString(Long id) {
+        Question question = questionMapper.selectByPrimaryKey(id);
+        String  characteristicString = question.getTag();
+        return characteristicString;
+    }
 }
