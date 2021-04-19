@@ -1,5 +1,6 @@
 package zhonger.cancer.bbs.service;
 
+import jnr.ffi.annotations.In;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
@@ -12,6 +13,7 @@ import zhonger.cancer.bbs.exception.CustomizeErrorCode;
 import zhonger.cancer.bbs.exception.CustomizeException;
 import zhonger.cancer.bbs.mapper.QuestionExtMapper;
 import zhonger.cancer.bbs.mapper.QuestionMapper;
+import zhonger.cancer.bbs.mapper.RecommendationMapper;
 import zhonger.cancer.bbs.mapper.UserMapper;
 import zhonger.cancer.bbs.model.Question;
 import zhonger.cancer.bbs.model.QuestionExample;
@@ -28,7 +30,6 @@ public class QuestionService {
     private UserMapper userMapper;
     @Autowired
     private QuestionExtMapper questionExtMapper;
-
     public PaginationDTO list(String search,Integer page, Integer size) {
         if (StringUtils.isNotBlank(search)) {
             String[] tags = StringUtils.split(search," ");
@@ -181,5 +182,10 @@ public class QuestionService {
         Question question = questionMapper.selectByPrimaryKey(id);
         String  characteristicString = question.getTag();
         return characteristicString;
+    }
+
+    public List<Question> selectAllQuestion() {
+        List<Question> questionList = questionExtMapper.selectAllQuestion();
+        return questionList;
     }
 }

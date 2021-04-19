@@ -30,4 +30,77 @@
     galgame = galgame + 1
     where id = #{id}
     </update>
+    <update id="addAnimation" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    animation = animation + 1
+    where id = #{id}
+    </update>
+    <update id="addFantasy" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    fantasy = fantasy + 1
+    where id = #{id}
+    </update>
+    <update id="addImaginary" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    imaginary = imaginary + 1
+    where id = #{id}
+    </update>
+    <update id="addBlood" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    blood = blood + 1
+    where id = #{id}
+    </update>
+    <update id="addCute" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    cute = cute + 1
+    where id = #{id}
+    </update>
+    <update id="addLachrymatory" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    lachrymatory = lachrymatory + 1
+    where id = #{id}
+    </update>
+    <update id="addCrossing" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    crossing = crossing + 1
+    where id = #{id}
+    </update>
+    <update id="addCampus" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    campus = campus + 1
+    where id = #{id}
+    </update>
+    <update id="addComedy" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    comedy = comedy + 1
+    where id = #{id}
+    </update>
+    <update id="addMatory" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    matory = matory + 1
+    where id = #{id}
+    </update>
+    <update id="addBattle" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    battle = battle + 1
+    where id = #{id}
+    </update>
+    <update id="addMagic" parameterType="zhonger.cancer.bbs.model.UserLike">
+    update userlike
+    set
+    magic = magic + 1
+    where id = #{id}
+    </update>
+
 </mapper>

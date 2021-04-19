@@ -38,9 +38,6 @@ public class QuestionController {
         if (user!=null){
             String questionCharacteristicString = questionService.selectCharacteristicString(id);
             recommendationService.saveCharacteristic(user,questionCharacteristicString);
-            System.out.println("帖子有人");
-        }else {
-            System.out.println("无人");
         }
         return "question";
     }

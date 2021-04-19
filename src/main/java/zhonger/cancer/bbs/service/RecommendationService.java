@@ -1,13 +1,18 @@
 package zhonger.cancer.bbs.service;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import zhonger.cancer.bbs.dto.QuestionCharacteristicDTO;
+import zhonger.cancer.bbs.dto.QuestionDTO;
+import zhonger.cancer.bbs.mapper.QuestionMapper;
 import zhonger.cancer.bbs.mapper.RecommendationMapper;
 import zhonger.cancer.bbs.mapper.UserLikeMapper;
 import zhonger.cancer.bbs.model.User;
 import zhonger.cancer.bbs.model.UserLike;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -16,6 +21,8 @@ public class RecommendationService {
     private UserLikeMapper userLikeMapper;
     @Autowired
     private RecommendationMapper recommendationMapper;
+    @Autowired
+    private QuestionService questionService;
 
     public List<Integer> userLikeList(User user) {
         List<Integer> userLikeList = new ArrayList<>();
@@ -27,8 +34,8 @@ public class RecommendationService {
         userLikeList.add(userLike.getBlood());
         userLikeList.add(userLike.getCute());
         userLikeList.add(userLike.getLachrymatory());
-        userLikeList.add(userLike.getCampus());
         userLikeList.add(userLike.getCrossing());
+        userLikeList.add(userLike.getCampus());
         userLikeList.add(userLike.getComedy());
         userLikeList.add(userLike.getMatory());
         userLikeList.add(userLike.getBattle());
@@ -61,44 +68,122 @@ public class RecommendationService {
         UserLike userLike = new UserLike();
         userLike.setId(user.getId());
         if (questionCharacteristicString.contains("galgame")){
-            System.out.println("galgame");
             recommendationMapper.addGalgame(userLike);
         }
         if (questionCharacteristicString.contains("动漫")){
-            System.out.println("动漫");
+            recommendationMapper.addAnimation(userLike);
         }
         if (questionCharacteristicString.contains("奇幻")){
-            System.out.println("奇幻");
+            recommendationMapper.addFantasy(userLike);
         }
         if (questionCharacteristicString.contains("架空")){
-            System.out.println("架空");
+            recommendationMapper.addImaginary(userLike);
         }
         if (questionCharacteristicString.contains("热血")){
-            System.out.println("热血");
+            recommendationMapper.addBlood(userLike);
         }
         if (questionCharacteristicString.contains("萌系")){
-            System.out.println("萌系");
+            recommendationMapper.addCute(userLike);
         }
         if (questionCharacteristicString.contains("催泪")){
-            System.out.println("催泪");
+            recommendationMapper.addLachrymatory(userLike);
         }
         if (questionCharacteristicString.contains("穿越")){
-            System.out.println("穿越");
+            recommendationMapper.addCrossing(userLike);
         }
         if (questionCharacteristicString.contains("校园")){
-            System.out.println("校园");
+            recommendationMapper.addCampus(userLike);
         }
         if (questionCharacteristicString.contains("搞笑")){
-            System.out.println("搞笑");
+            recommendationMapper.addComedy(userLike);
         }
         if (questionCharacteristicString.contains("恋爱")){
-            System.out.println("恋爱");
+            recommendationMapper.addMatory(userLike);
         }
         if (questionCharacteristicString.contains("战斗")){
-            System.out.println("战斗");
+            recommendationMapper.addBattle(userLike);
         }
         if (questionCharacteristicString.contains("魔法")){
-            System.out.println("魔法");
+            recommendationMapper.addMagic(userLike);
         }
+    }
+
+    public List<Integer> StringToList(String tag) {
+        List<Integer> questionCharacteristic = new ArrayList<>();
+        if (tag.contains("galgame")){
+            questionCharacteristic.add(0,1);
+        }else
+            questionCharacteristic.add(0,0);
+        if (tag.contains("动漫")){
+            questionCharacteristic.add(1,1);
+        }else {
+            questionCharacteristic.add(1,0);
+        }
+        if(tag.contains("奇幻")){
+            questionCharacteristic.add(2,1);
+        }else {
+            questionCharacteristic.add(2,0);
+        }
+        if (tag.contains("架空")){
+            questionCharacteristic.add(3,1);
+        }else {
+            questionCharacteristic.add(3,0);
+        }
+        if (tag.contains("热血")){
+            questionCharacteristic.add(4,1);
+        }else {
+            questionCharacteristic.add(4,0);
+        }
+        if (tag.contains("萌系")){
+            questionCharacteristic.add(5,1);
+        }else {
+            questionCharacteristic.add(5,0);
+        }
+        if (tag.contains("催泪")){
+            questionCharacteristic.add(6,1);
+        }else {
+            questionCharacteristic.add(6,0);
+        }
+        if (tag.contains("穿越")){
+            questionCharacteristic.add(7,1);
+        }else {
+            questionCharacteristic.add(7,0);
+        }
+        if (tag.contains("校园")){
+            questionCharacteristic.add(8,1);
+        }else {
+            questionCharacteristic.add(8,0);
+        }
+        if (tag.contains("搞笑")){
+            questionCharacteristic.add(9,1);
+        }else {
+            questionCharacteristic.add(9,0);
+        }
+        if (tag.contains("恋爱")){
+            questionCharacteristic.add(10,1);
+        }else {
+            questionCharacteristic.add(10,0);
+        }
+        if (tag.contains("战斗")){
+            questionCharacteristic.add(11,1);
+        }else {
+            questionCharacteristic.add(11,0);
+        }
+        if (tag.contains("魔法")){
+            questionCharacteristic.add(12,1);
+        }else {
+            questionCharacteristic.add(12,0);
+        }
+        return questionCharacteristic;
+    }
+
+    public List<QuestionDTO> assembleRecommendationQuestions(List<QuestionCharacteristicDTO> questionCharacteristicDTOList) {
+        List<QuestionDTO> recommendationQuestions = new ArrayList<>();
+        for (int i = 0 ;i <5 ;i++){
+            QuestionDTO questionDTO = questionService.getById(questionCharacteristicDTOList.get(i).getQuestionID());
+            recommendationQuestions.add(questionDTO);
+        }
+        return recommendationQuestions;
+
     }
 }

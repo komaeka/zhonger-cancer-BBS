@@ -55,4 +55,7 @@
     </where>
     order by gmt_create desc limit #{page},#{size}
   </select>
+  <select id="selectAllQuestion"  resultMap="BaseResultMap">
+    select * from question
+  </select>
 </mapper>
