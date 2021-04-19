@@ -2,11 +2,13 @@ package zhonger.cancer.bbs.dto;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
-public class QuestionCharacteristicDTO {
+public class QuestionCharacteristicDTO{
     Long questionID;
     List<Integer> questionCharacteristic;
-    double similarity;
+    BigDecimal similarity;
+
 }

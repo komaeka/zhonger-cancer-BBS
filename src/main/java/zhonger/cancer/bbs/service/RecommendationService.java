@@ -11,6 +11,7 @@ import zhonger.cancer.bbs.mapper.UserLikeMapper;
 import zhonger.cancer.bbs.model.User;
 import zhonger.cancer.bbs.model.UserLike;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +43,7 @@ public class RecommendationService {
         userLikeList.add(userLike.getMagic());
         return userLikeList;
     }
-    public double cosine_similarity(List<Integer> list1,List<Integer> list2) {
+    public BigDecimal cosine_similarity(List<Integer> list1, List<Integer> list2) {
         double vector1All =0.00;//向量1分量平方和
         double vector1Modulo = 0.00;//向量1的模
         double vector2All = 0.00;//向量1分量平方和
@@ -61,7 +62,8 @@ public class RecommendationService {
         vector2Modulo = Math.sqrt(vector2All);
         similarity = vectorProduct / (vector1Modulo*vector2Modulo);
 //        System.out.println(similarity);
-        return similarity;
+        BigDecimal similarity_result = new BigDecimal(similarity);
+        return similarity_result;
     }
 
     public void saveCharacteristic(User user, String questionCharacteristicString) {
@@ -179,8 +181,9 @@ public class RecommendationService {
 
     public List<QuestionDTO> assembleRecommendationQuestions(List<QuestionCharacteristicDTO> questionCharacteristicDTOList) {
         List<QuestionDTO> recommendationQuestions = new ArrayList<>();
-        for (int i = 0 ;i <5 ;i++){
+        for (int i = 0 ;i <7 ;i++){
             QuestionDTO questionDTO = questionService.getById(questionCharacteristicDTOList.get(i).getQuestionID());
+//            System.out.println();
             recommendationQuestions.add(questionDTO);
         }
         return recommendationQuestions;

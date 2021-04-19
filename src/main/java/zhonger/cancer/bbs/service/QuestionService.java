@@ -1,6 +1,5 @@
 package zhonger.cancer.bbs.service;
 
-import jnr.ffi.annotations.In;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
@@ -13,13 +12,14 @@ import zhonger.cancer.bbs.exception.CustomizeErrorCode;
 import zhonger.cancer.bbs.exception.CustomizeException;
 import zhonger.cancer.bbs.mapper.QuestionExtMapper;
 import zhonger.cancer.bbs.mapper.QuestionMapper;
-import zhonger.cancer.bbs.mapper.RecommendationMapper;
 import zhonger.cancer.bbs.mapper.UserMapper;
 import zhonger.cancer.bbs.model.Question;
 import zhonger.cancer.bbs.model.QuestionExample;
 import zhonger.cancer.bbs.model.User;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -171,7 +171,11 @@ public class QuestionService {
             BeanUtils.copyProperties(q, questionDTO);
             return questionDTO;
         }).collect(Collectors.toList());
-        return questionDTOS;
+        List<QuestionDTO> questionResult = new ArrayList<>();
+        for (int i =0 ;i<7;i++){
+            questionResult.add(questionDTOS.get(i));
+        }
+        return questionResult;
     }
     public Integer deleteQuestion(Long id){
         Integer result = questionMapper.deleteByPrimaryKey(id);

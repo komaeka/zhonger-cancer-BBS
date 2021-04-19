@@ -17,6 +17,7 @@ import zhonger.cancer.bbs.service.RecommendationService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -49,13 +50,19 @@ public class IndexController {
                 questionCharacteristicDTOList.add(questionCharacteristicDTO);
             }
             //按照余弦相似度从大到小排序
-            questionCharacteristicDTOList.sort((x, y) -> Long.compare(Math.round(x.getSimilarity()), Math.round(y.getSimilarity())));
+            Collections.sort(questionCharacteristicDTOList, new Comparator<QuestionCharacteristicDTO>() {
+                @Override
+                public int compare(QuestionCharacteristicDTO o1, QuestionCharacteristicDTO o2) {
+                    return o1.getSimilarity().compareTo(o2.getSimilarity());
+                }
+            });
             Collections.reverse(questionCharacteristicDTOList);
-//            for (QuestionCharacteristicDTO questionCharacteristicDTO: questionCharacteristicDTOList){
+            //遍历推荐帖子
+            for (QuestionCharacteristicDTO questionCharacteristicDTO: questionCharacteristicDTOList){
 //                System.out.println(questionCharacteristicDTO.getQuestionID());
 //                System.out.println(questionCharacteristicDTO.getQuestionCharacteristic());
-//                System.out.println(questionCharacteristicDTO.getSimilarity());
-//            }
+                System.out.println(questionCharacteristicDTO.getSimilarity());
+            }
             //组装推荐帖子
             List<QuestionDTO> recommendationQuestions = recommendationService.assembleRecommendationQuestions(questionCharacteristicDTOList);
             model.addAttribute("recommendationQuestions",recommendationQuestions);
