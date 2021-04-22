@@ -61,7 +61,7 @@
             <!--            回复-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>
-                    <span th:text="${question.commentCount}"></span>个回复
+                    <span th:text="${question.commentCount}"></span>个评论
                 </h4>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="comment:${comments}">
@@ -77,7 +77,7 @@
                             </h5>
                             <div th:text="${comment.content}"></div>
                             <div class="menu">
-                                <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                                <span class="glyphicon glyphicon-thumbs-up icon" id="zan" th:comment-id="${comment.id}" onclick="thumbsUp(this)"></span>
                                 <span  th:data-id="${comment.id}" onclick="collapseComments(this)" class="comment-icon">
                                      <span class="glyphicon glyphicon-comment"></span>
                                     <span  th:text="${comment.commentCount}"></span>
@@ -99,7 +99,7 @@
             <!--            回复输入框-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>
-                    提交回复
+                    评论
                 </h4>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">

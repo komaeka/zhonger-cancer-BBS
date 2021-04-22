@@ -58,6 +58,7 @@ public class IndexController {
             });
             Collections.reverse(questionCharacteristicDTOList);
             //遍历推荐帖子
+            System.out.println("--------------------------------------------------------------------------");
             for (QuestionCharacteristicDTO questionCharacteristicDTO: questionCharacteristicDTOList){
 //                System.out.println(questionCharacteristicDTO.getQuestionID());
 //                System.out.println(questionCharacteristicDTO.getQuestionCharacteristic());

@@ -17,9 +17,7 @@ import zhonger.cancer.bbs.model.Question;
 import zhonger.cancer.bbs.model.QuestionExample;
 import zhonger.cancer.bbs.model.User;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,6 +28,7 @@ public class QuestionService {
     private UserMapper userMapper;
     @Autowired
     private QuestionExtMapper questionExtMapper;
+
     public PaginationDTO list(String search,Integer page, Integer size) {
         if (StringUtils.isNotBlank(search)) {
             String[] tags = StringUtils.split(search," ");
@@ -172,11 +171,15 @@ public class QuestionService {
             return questionDTO;
         }).collect(Collectors.toList());
         List<QuestionDTO> questionResult = new ArrayList<>();
+        int[] randomList = randomCommon(0,questionDTOS.size()-1,7);
         for (int i =0 ;i<7;i++){
-            questionResult.add(questionDTOS.get(i));
+//            System.out.println(questionDTOS.get(randomList[i]).getTitle());
+//            System.out.println(randomList[i]);
+            questionResult.add(questionDTOS.get(randomList[i]));
         }
         return questionResult;
     }
+
     public Integer deleteQuestion(Long id){
         Integer result = questionMapper.deleteByPrimaryKey(id);
         return result;
@@ -191,5 +194,28 @@ public class QuestionService {
     public List<Question> selectAllQuestion() {
         List<Question> questionList = questionExtMapper.selectAllQuestion();
         return questionList;
+    }
+
+    public static int[] randomCommon(int min, int max, int n){
+        if (n > (max - min + 1) || max < min) {
+            return null;
+        }
+        int[] result = new int[n];
+        int count = 0;
+        while(count < n) {
+            int num = (int) (Math.random() * (max - min)) + min;
+            boolean flag = true;
+            for (int j = 0; j < n; j++) {
+                if(num == result[j]){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag){
+                result[count] = num;
+                count++;
+            }
+        }
+        return result;
     }
 }

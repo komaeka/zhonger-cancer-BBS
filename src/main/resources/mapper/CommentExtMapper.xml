@@ -23,4 +23,10 @@
     COMMENT_COUNT = COMMENT_COUNT + #{commentCount,jdbcType=INTEGER}
     where id = #{id}
     </update>
+<!--    <update id="zan" parameterType="zhonger.cancer.bbs.dto.LikeDTO">-->
+<!--    update COMMENT-->
+<!--    set-->
+<!--    like_count = like_count + 1-->
+<!--    where id = #{commentId}-->
+<!--    </update>-->
 </mapper>

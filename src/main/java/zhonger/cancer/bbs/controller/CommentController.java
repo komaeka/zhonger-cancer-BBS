@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import zhonger.cancer.bbs.dto.CommentCreateDTO;
 import zhonger.cancer.bbs.dto.CommentDTO;
+import zhonger.cancer.bbs.dto.LikeDTO;
 import zhonger.cancer.bbs.dto.ResultDTO;
 import zhonger.cancer.bbs.enums.CommentTypeEnum;
 import zhonger.cancer.bbs.exception.CustomizeErrorCode;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CommentController {
     @Autowired
     private CommentService commentService;
+
     @ResponseBody
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
     public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
@@ -48,5 +50,11 @@ public class CommentController {
         List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
         return ResultDTO.okOf(commentDTOS);
     }
+//
+//    @RequestMapping("/commentzan")
+//    public void comment_zan(@RequestBody LikeDTO likeDTO){
+//        System.out.println(likeDTO.getCommentId());
+//        commentService.zan(likeDTO);
+//    }
 }
 
