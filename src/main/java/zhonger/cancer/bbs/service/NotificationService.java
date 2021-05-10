@@ -11,7 +11,6 @@ import zhonger.cancer.bbs.enums.NotificationTypeEnum;
 import zhonger.cancer.bbs.exception.CustomizeErrorCode;
 import zhonger.cancer.bbs.exception.CustomizeException;
 import zhonger.cancer.bbs.mapper.NotificationMapper;
-import zhonger.cancer.bbs.mapper.UserMapper;
 import zhonger.cancer.bbs.model.Notification;
 import zhonger.cancer.bbs.model.NotificationExample;
 import zhonger.cancer.bbs.model.User;
@@ -86,7 +85,6 @@ public class NotificationService {
         }
         notification.setStatus(NotificationStatusEnum.READ.getStatus());
         notificationMapper.updateByPrimaryKey(notification);
-
         NotificationDTO notificationDTO = new NotificationDTO();
         BeanUtils.copyProperties(notification, notificationDTO);
         notificationDTO.setTypeName(NotificationTypeEnum.nameOfType(notification.getType()));

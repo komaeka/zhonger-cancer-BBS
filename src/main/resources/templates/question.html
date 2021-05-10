@@ -77,7 +77,7 @@
                             </h5>
                             <div th:text="${comment.content}"></div>
                             <div class="menu">
-                                <span class="glyphicon glyphicon-thumbs-up icon" id="zan" th:comment-id="${comment.id}" onclick="thumbsUp(this)"></span>
+                                <span class="glyphicon glyphicon-thumbs-up icon" id="zan" th:comment-id="${comment.id}" onclick="thumbsUp()"></span>
                                 <span  th:data-id="${comment.id}" onclick="collapseComments(this)" class="comment-icon">
                                      <span class="glyphicon glyphicon-comment"></span>
                                     <span  th:text="${comment.commentCount}"></span>

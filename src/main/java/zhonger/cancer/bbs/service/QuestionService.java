@@ -173,8 +173,6 @@ public class QuestionService {
         List<QuestionDTO> questionResult = new ArrayList<>();
         int[] randomList = randomCommon(0,questionDTOS.size()-1,7);
         for (int i =0 ;i<7;i++){
-//            System.out.println(questionDTOS.get(randomList[i]).getTitle());
-//            System.out.println(randomList[i]);
             questionResult.add(questionDTOS.get(randomList[i]));
         }
         return questionResult;

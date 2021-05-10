@@ -114,17 +114,7 @@ function selectTag(value){
     }
 }
 //点赞
-function thumbsUp(e){
+function thumbsUp(){
     var icon = document.getElementById("zan");
     icon.style.color="#499ef3";
-    // var commentId = e.getAttribute("comment-id");
-    // var commentIdJSON = {"commentId":commentId}
-    // $.ajax(
-    //     {
-    //         url: "/commentzan",
-    //         type: "POST",
-    //         dataType: "json",
-    //         contentType:"application/json",
-    //         data: JSON.stringify(commentIdJSON),
-    //     })
 }

@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import zhonger.cancer.bbs.dto.ResultDTO;
 import zhonger.cancer.bbs.exception.CustomizeErrorCode;

@@ -1,11 +1,9 @@
 package zhonger.cancer.bbs.service;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zhonger.cancer.bbs.dto.QuestionCharacteristicDTO;
 import zhonger.cancer.bbs.dto.QuestionDTO;
-import zhonger.cancer.bbs.mapper.QuestionMapper;
 import zhonger.cancer.bbs.mapper.RecommendationMapper;
 import zhonger.cancer.bbs.mapper.UserLikeMapper;
 import zhonger.cancer.bbs.model.User;
@@ -13,7 +11,6 @@ import zhonger.cancer.bbs.model.UserLike;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -61,7 +58,6 @@ public class RecommendationService {
         vector1Modulo = Math.sqrt(vector1All);
         vector2Modulo = Math.sqrt(vector2All);
         similarity = vectorProduct / (vector1Modulo*vector2Modulo);
-//        System.out.println(similarity);
         BigDecimal similarity_result = new BigDecimal(similarity);
         return similarity_result;
     }
@@ -183,7 +179,6 @@ public class RecommendationService {
         List<QuestionDTO> recommendationQuestions = new ArrayList<>();
         for (int i = 0 ;i <7 ;i++){
             QuestionDTO questionDTO = questionService.getById(questionCharacteristicDTOList.get(i).getQuestionID());
-//            System.out.println();
             recommendationQuestions.add(questionDTO);
         }
         return recommendationQuestions;
