@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import zhonger.cancer.bbs.mapper.NotificationMapper;
 import zhonger.cancer.bbs.mapper.UserMapper;
 import zhonger.cancer.bbs.model.User;
 import zhonger.cancer.bbs.model.UserExample;
