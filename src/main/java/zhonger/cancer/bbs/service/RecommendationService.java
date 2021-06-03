@@ -45,11 +45,11 @@ public class RecommendationService {
         double vector1Modulo = 0.00;//向量1的模
         double vector2All = 0.00;//向量1分量平方和
         double vector2Modulo = 0.00;//向量2的模
-        double vectorProduct = 0.00; //向量积
+        double vectorProduct = 0.00; //向量数量积
         double similarity = 0.00;
         //遍历数组
         for(int i = 0;i < list1.size(); i ++){
-            //计算向量积
+            //计算数量积
             vectorProduct += list1.get(i)*list2.get(i);
             //计算平方和
             vector1All += Math.pow(list1.get(i),2);
@@ -57,7 +57,7 @@ public class RecommendationService {
         }
         vector1Modulo = Math.sqrt(vector1All);
         vector2Modulo = Math.sqrt(vector2All);
-        similarity = vectorProduct / (vector1Modulo*vector2Modulo);
+        similarity = vectorProduct / (vector1Modulo*vector2Modulo);//数量积除以模长的乘积
         BigDecimal similarity_result = new BigDecimal(similarity);
         return similarity_result;
     }
