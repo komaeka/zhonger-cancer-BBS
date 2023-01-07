@@ -1,5 +1,8 @@
-## 资源文件
+> 本项目学习自bilibili的UP主**码匠笔记**的[【Spring Boot 实战】论坛项目【第一季】](https://www.bilibili.com/video/BV1r4411r7au)
+
+# 资源文件
 未使用 Flyway 之前的数据库脚本
+
 ```sql
 CREATE TABLE USER
 (
@@ -11,7 +14,9 @@ CREATE TABLE USER
     GMT_MODIFIED BIGINT
 );
 ```
+
 运行 migrate 和 generator 的命令
+
 ```bash
 mvn flyway:migrate
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
