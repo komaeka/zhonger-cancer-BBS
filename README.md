@@ -1,5 +1,6 @@
 > 本项目学习自bilibili的UP主**码匠笔记**的[【Spring Boot 实战】论坛项目【第一季】](https://www.bilibili.com/video/BV1r4411r7au)
-> 并在系统增加了个性化推荐的模块
+> 
+> 并在系统中增加了个性化推荐的模块
 
 # 资源文件
 未使用 Flyway 之前的数据库脚本
